@@ -1,10 +1,15 @@
 package upb.Matricez;
 
+import edu.princeton.cs.algs4.StdOut;
+
 public class Matriz {
 
     private int filas;
     private int columnas;
     private int[][] matrix;
+
+    public Matriz() {
+    }
 
     public Matriz(int filas, int columnas) {
         this.filas = filas;
@@ -77,9 +82,19 @@ public class Matriz {
         return resultado;
     }
 
-    // falta
-    public Matriz producto(Matriz otraMatriz) {
+    public Matriz multiplicar(Matriz nuevamatriz) throws Exception {
+        if (this.filas != nuevamatriz.filas || this.columnas != nuevamatriz.columnas) {
+            throw new Exception(
+                    "Las matrices deben de tener la mismas dimensiónes para poder realizar la multiplicacion");
+        }
+
         Matriz resultado = new Matriz(getfila(), getColunmas());
+
+        for (int i = 0; i < getfila(); i++) {
+            for (int j = 0; j < getColunmas(); j++) {
+                resultado.matrix[i][j] = this.matrix[i][j] * nuevamatriz.matrix[i][j];
+            }
+        }
         return resultado;
     }
 
@@ -88,19 +103,31 @@ public class Matriz {
         Matriz matrix1 = new Matriz(3, 4);
         Matriz matrix2 = new Matriz(3, 4);
 
-        System.out.println("Matrix 1:");
-        System.out.println(matrix1.toString());
+        StdOut.println("\nMatrix 1:");
+        StdOut.println(matrix1.toString());
 
-        System.out.println("Matrix 2:");
-        System.out.println(matrix2.toString());
+        StdOut.println("Matrix 2:");
+        StdOut.println(matrix2.toString());
 
         try {
+
             Matriz suma = matrix1.sumar(matrix2);
-            System.out.println("Resultado de la suma:");
-            System.out.println(suma.toString());
+            StdOut.println("Resultado de la suma:");
+            StdOut.println(suma.toString() + "\n");
+
+            Matriz multiplicacion = matrix1.multiplicar(matrix2);
+            StdOut.println("Resultado de la multiplicacion:");
+            StdOut.println(multiplicacion.toString());
+
         } catch (Exception upss) {
-            System.out.println("Error :(  " + upss.getMessage());
+            StdOut.println("Tuvimos Error :(   --> " + upss.getMessage());
         }
+
+        Matriz equipo = new Matriz();
+        String integrantes[] = { "000493912", "000491739" };
+        StdOut.println("--------------INTEGRANTES----------------");
+        StdOut.println("\n    EL GRUPO QUE NOS TOCO FUE EL: " + equipo.hashEquipo(integrantes) + "\n");
+        StdOut.println("-----------------------------------------\n");
 
     }
 
