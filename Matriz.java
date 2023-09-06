@@ -1,5 +1,6 @@
 package upb.Matricez;
 
+import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Matriz {
@@ -45,9 +46,24 @@ public class Matriz {
 
     }
 
-    // falta
     @Override
     public boolean equals(Object otraMatriz) {
+
+        if (otraMatriz == null)
+            return false;
+        Matriz nuevito = (Matriz) otraMatriz;
+
+        // comprobando dimensiones iguales
+        if (this.filas != nuevito.filas || this.columnas != nuevito.columnas)
+            return false;
+
+        // comprobando componente por componente
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if (this.matrix[i][j] != nuevito.matrix[i][j])
+                    return false;
+            }
+        }
         return true;
     }
 
@@ -124,7 +140,7 @@ public class Matriz {
         }
 
         Matriz equipo = new Matriz();
-        String integrantes[] = { "000493912", "000491739" };
+        String integrantes[] = { "000491739", "000493912" };
         StdOut.println("--------------INTEGRANTES----------------");
         StdOut.println("\n    EL GRUPO QUE NOS TOCO FUE EL: " + equipo.hashEquipo(integrantes) + "\n");
         StdOut.println("-----------------------------------------\n");
