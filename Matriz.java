@@ -1,6 +1,5 @@
 package upb.Matricez;
 
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Matriz {
@@ -30,6 +29,10 @@ public class Matriz {
 
     public int[][] getmatrix() {
         return matrix;
+    }
+
+    public void setMatrix(int[][] x) {
+        matrix = x;
     }
 
     @Override
@@ -114,7 +117,7 @@ public class Matriz {
         return resultado;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Matriz matrix1 = new Matriz(3, 4);
         Matriz matrix2 = new Matriz(3, 4);
@@ -124,6 +127,22 @@ public class Matriz {
 
         StdOut.println("Matrix 2:");
         StdOut.println(matrix2.toString());
+
+        Matriz matrixA = new Matriz();
+        int [][] matrizA = {{2,2,2},{2, 2, 2}, {2,2,2}, {2,2,2}};
+        matrixA.setMatrix(matrizA);
+
+        Matriz matrixB = new Matriz();
+        int [][] matrizB = {{2,2,2},{2, 2, 2}, {2,2,2}, {2,2,2}};
+        matrixB.setMatrix(matrizB);
+
+        Matriz matrixC = new Matriz();
+        int [][] matrizC = {{4,4,4},{4, 4, 4}, {4,4,4}, {4,4,4}};
+        matrixC.setMatrix(matrizC);
+
+        Matriz sumado = matrixA.sumar(matrixB);
+
+        assert(matrixC.equals(sumado));
 
         try {
 
